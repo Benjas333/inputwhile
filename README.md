@@ -145,3 +145,8 @@ regexSet = inputwhile.setRegex(
         regex_separator=r"[.,\s]+"
 )
 ```
+
+## Links
+[Twitter](https://x.com/ElBenjas333)
+[Github](https://github.com/Benjas333/inputwhile)
+[PyPI](https://pypi.org/project/inputwhile/)
