@@ -1,0 +1,7 @@
+/.buildPkg.bat
+/.uploadToPyPI.bat
+/.uploadToTestPyPI.bat
+/build
+/dist
+/inputwhile.egg-info
+/pyproject.toml.old
