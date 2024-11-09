@@ -6,7 +6,7 @@ long_description = (this_dir / 'README.md').read_text()
 
 setup(
         name="inputwhile",
-        version="1.0.0",
+        version="1.0.2",
         description="A simple input while loop utility",
         long_description=long_description,
         long_description_content_type='text/markdown',
