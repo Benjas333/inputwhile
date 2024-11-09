@@ -16,7 +16,7 @@ def customFunction(
             prompt (object): What will be printed when requesting the input.
             condition_func (Callable[..., Any]): The condition function to be satisfied in order to end the while loop.
             error_prompt (Optional[object], optional): What will be printed when the condition is not satisfied. If None uses prompt again. Defaults to None.
-            doStrip (bool, optional): Whether to make a .strip() to the values from the inputs. Defaults to False.
+            doStrip (bool, optional): Whether to do an element.strip() to the input value. Defaults to False.
             returnValueFromConditionFunc (bool, optional): Whether to return condition_func(value) instead of just value. This is usually used in more complex inputwhiles. Defaults to False.
 
         Returns:
@@ -25,7 +25,7 @@ def customFunction(
         value = input(prompt).strip() if doStrip else input(prompt)
         condition = condition_func(value, *args, **kwargs)
         while not condition:
-                value = input(prompt or error_prompt).strip() if doStrip else input(prompt or error_prompt)
+                value = input(error_prompt or prompt).strip() if doStrip else input(error_prompt or prompt)
                 condition = condition_func(value, *args, **kwargs)
         return condition if returnValueFromConditionFunc else value
 
@@ -176,19 +176,53 @@ def booleanFlexibleRegex(
 
 def stringNotEmpty(
         prompt: object,
-        error_prompt: Optional[object] = None
+        error_prompt: Optional[object] = None,
+        min: Optional[int] = 1,
+        max: Optional[int] = None,
 ) -> str:
         """inputwhile for not empty string values.
 
         Args:
             prompt (object): What will be printed when requesting the input.
             error_prompt (Optional[object], optional): What will be printed when the condition is not satisfied. If None uses prompt again. Defaults to None.
+            min (Optional[int], optional): Defines a minimum length. Defaults to 1.
+            max (Optional[int], optional): Defines a maximum length. Defaults to None.
 
         Returns:
             str: Returns a string value.
         """
-        condition_func = lambda value: value != ""
+        condition_func = lambda value: len(value) >= min and (max is None or len(value) <= max)
         return customFunction(prompt, condition_func, error_prompt=error_prompt, doStrip=True)
+
+
+def stringRegex(
+        prompt: object,
+        regex: str,
+        error_prompt: Optional[object] = None,
+        min: Optional[int] = None,
+        max: Optional[int] = None,
+        doStrip: Optional[bool] = False
+) -> str:
+        """inputwhile for input values that must match a regex.
+
+        Args:
+            prompt (object): What will be printed when requesting the input.
+            regex (str): The regex pattern to match.
+            error_prompt (Optional[object], optional): What will be printed when the condition is not satisfied. If None uses prompt again. Defaults to None.
+            min (Optional[int], optional): Defines a minimum length. Defaults to None.
+            max (Optional[int], optional): Defines a maximum length. Defaults to None.
+            doStrip (bool, optional): Whether to do an element.strip() to the input value. Defaults to False.
+        
+        Returns:
+            str: Returns a string value that matches the regex pattern.
+        """
+        from re import match
+        condition_func = lambda value: (
+                match(regex, value) is not None
+                and (min is None or len(value) >= min)
+                and (max is None or len(value) <= max)
+        )
+        return customFunction(prompt, condition_func, error_prompt=error_prompt, doStrip=doStrip)
 
 
 def listInput(
