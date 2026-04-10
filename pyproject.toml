@@ -1,6 +1,6 @@
 [project]
 name = "inputwhile"
-version = "1.1.0"
+version = "1.1.1"
 description = "A simple input while loop utility"
 readme = "README.md"
 authors = [{ name = "Benjas333" }]

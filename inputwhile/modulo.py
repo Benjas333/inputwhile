@@ -16,9 +16,9 @@ R = TypeVar("R")
 def customFunction(
         prompt: object,
         condition_func: Callable[Concatenate[str, P], R | None],
-        error_prompt: object | None = None,
-        doStrip: bool = False,
-        returnValueFromConditionFunc: Literal[False] = False,
+        error_prompt: object | None,
+        doStrip: bool,
+        returnValueFromConditionFunc: Literal[False],
         *args: P.args,
         **kwargs: P.kwargs,
 ) -> str: ...
@@ -26,9 +26,9 @@ def customFunction(
 def customFunction(
         prompt: object,
         condition_func: Callable[Concatenate[str, P], R | None],
-        error_prompt: object | None = None,
-        doStrip: bool = False,
-        returnValueFromConditionFunc: Literal[True] = True,
+        error_prompt: object | None,
+        doStrip: bool,
+        returnValueFromConditionFunc: Literal[True],
         *args: P.args,
         **kwargs: P.kwargs,
 ) -> R: ...
