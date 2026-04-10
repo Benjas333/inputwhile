@@ -1,1 +1,13 @@
-from .modulo import *
+from inputwhile.modulo import boolean as boolean
+from inputwhile.modulo import booleanFlexible as booleanFlexible
+from inputwhile.modulo import booleanFlexibleRegex as booleanFlexibleRegex
+from inputwhile.modulo import customFunction as customFunction
+from inputwhile.modulo import customTypeClass as customTypeClass
+from inputwhile.modulo import floatInput as floatInput
+from inputwhile.modulo import integer as integer
+from inputwhile.modulo import listInput as listInput
+from inputwhile.modulo import listRegex as listRegex
+from inputwhile.modulo import setInput as setInput
+from inputwhile.modulo import setRegex as setRegex
+from inputwhile.modulo import stringNotEmpty as stringNotEmpty
+from inputwhile.modulo import stringRegex as stringRegex

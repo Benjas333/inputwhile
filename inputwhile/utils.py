@@ -1,11 +1,12 @@
-from typing import Type, Any
+from collections.abc import Callable
+from typing import TypeVar
 
-def isParsable(
-        variable: Any,
-        classType: Type[Any]
-) -> bool:
+T = TypeVar("T")
+
+
+def is_parsable(variable: str, class_type: Callable[[str], T]) -> bool:
         try:
-                classType(variable)
+                _ = class_type(variable)
                 return True
         except ValueError:
                 return False
